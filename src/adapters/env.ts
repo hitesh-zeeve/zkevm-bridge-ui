@@ -201,8 +201,8 @@ const envToDomain = ({
       };
   const isDepositWarningEnabled = stringBooleanParser.parse(VITE_ENABLE_DEPOSIT_WARNING);
 
-  console.log('VITE_ETHEREUM_EXPLORER_URL -', VITE_ETHEREUM_EXPLORER_URL);
-  console.log('VITE_POLYGON_ZK_EVM_BRIDGE_CONTRACT_ADDRESS', VITE_POLYGON_ZK_EVM_BRIDGE_CONTRACT_ADDRESS);
+  console.log('VITE_ETHEREUM_RPC_URL -', VITE_ETHEREUM_RPC_URL);
+  console.log('VITE_POLYGON_ZK_EVM_RPC_URL', VITE_POLYGON_ZK_EVM_RPC_URL);
   return getChains({
     ethereum: {
       bridgeContractAddress: VITE_ETHEREUM_BRIDGE_CONTRACT_ADDRESS,

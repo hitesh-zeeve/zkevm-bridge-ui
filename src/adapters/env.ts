@@ -187,6 +187,7 @@ const envToDomain = ({
     VITE_ETHEREUM_FORCE_UPDATE_GLOBAL_EXIT_ROOT
   );
   const bridgeApiUrl = VITE_BRIDGE_API_URL;
+  console.log('env..ts: bridgeURL - ', bridgeApiUrl);
   const outdatedNetworkModal: domain.Env["outdatedNetworkModal"] = isOutdatedNetworkModalEnabled
     ? {
         isEnabled: true,
@@ -200,6 +201,8 @@ const envToDomain = ({
       };
   const isDepositWarningEnabled = stringBooleanParser.parse(VITE_ENABLE_DEPOSIT_WARNING);
 
+  console.log('VITE_ETHEREUM_EXPLORER_URL -', VITE_ETHEREUM_EXPLORER_URL);
+  console.log('VITE_POLYGON_ZK_EVM_BRIDGE_CONTRACT_ADDRESS', VITE_POLYGON_ZK_EVM_BRIDGE_CONTRACT_ADDRESS);
   return getChains({
     ethereum: {
       bridgeContractAddress: VITE_ETHEREUM_BRIDGE_CONTRACT_ADDRESS,

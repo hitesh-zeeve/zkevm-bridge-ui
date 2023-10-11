@@ -217,6 +217,7 @@ const envToDomain = ({
       rpcUrl: VITE_POLYGON_ZK_EVM_RPC_URL,
     },
   }).then((chains) => {
+    console.log(chains);
     const ethereumChain = chains.find((chain) => chain.key === "ethereum");
 
     if (!ethereumChain) {

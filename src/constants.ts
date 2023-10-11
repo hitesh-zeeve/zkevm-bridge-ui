@@ -96,8 +96,8 @@ export const getChains = ({
 }): Promise<[EthereumChain, ZkEVMChain]> => {
   console.log('ethereum.rpcUrl -', ethereum.rpcUrl);
   console.log('polygonZkEVM.rpcUrl -', polygonZkEVM.rpcUrl);
-  const ethereumProvider = new StaticJsonRpcProvider(ethereum.rpcUrl);
-  const polygonZkEVMProvider = new StaticJsonRpcProvider(polygonZkEVM.rpcUrl);
+  const ethereumProvider = new StaticJsonRpcProvider({url: ethereum.rpcUrl, user: "zeeve", password: "2ef2d3b82ccd7129c6ba9f4314929e32"});
+  const polygonZkEVMProvider = new StaticJsonRpcProvider({url: polygonZkEVM.rpcUrl, user: "zeeve", password: "2ef2d3b82ccd7129c6ba9f4314929e32"});
   console.log('ethereumProvider -', JSON.stringify(ethereumProvider));
   console.log('polygonZkEVMProvider -', JSON.stringify(polygonZkEVMProvider));
   const poeContract = ProofOfEfficiency__factory.connect(
@@ -109,7 +109,11 @@ export const getChains = ({
     ethereumProvider.getNetwork().catch(() => Promise.reject(ProviderError.Ethereum)),
     polygonZkEVMProvider.getNetwork().catch(() => Promise.reject(ProviderError.PolygonZkEVM)),
     poeContract.networkName().catch(() => Promise.reject(ProviderError.Ethereum)),
-  ]).then(([ethereumNetwork, polygonZkEVMNetwork, polygonZkEVMNetworkName]) => [
+  ]).then(([ethereumNetwork, polygonZkEVMNetwork, polygonZkEVMNetworkName]) => { 
+    console.log('ethereumNetwork..... -', ethereumNetwork);
+    console.log('polygonZkEVMNetwork..... -', polygonZkEVMNetwork);
+    console.log('polygonZkEVMNetworkName...... -', polygonZkEVMNetworkName);
+    return [
     {
       bridgeContractAddress: ethereum.bridgeContractAddress,
       chainId: ethereumNetwork.chainId,
@@ -141,7 +145,7 @@ export const getChains = ({
       networkId: polygonZkEVM.networkId,
       provider: polygonZkEVMProvider,
     },
-  ]).catch((e => {
+  ]}).catch((e => {
     console.error('ERRROR', e);
   }));
 };

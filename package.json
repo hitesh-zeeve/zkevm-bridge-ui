@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "generate-contract-types": "./scripts/generate-contract-types.sh",
+    "generate-contract-types": "bash ./scripts/generate-contract-types.sh",
     "prepare": "husky install",
     "postinstall": "npm run generate-contract-types",
     "format": "prettier --write .",

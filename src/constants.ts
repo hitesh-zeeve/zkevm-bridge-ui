@@ -96,28 +96,15 @@ export const getChains = ({
     rpcUrl: string;
   };
 }): Promise<[EthereumChain, ZkEVMChain]> => {
-  let ethereumConn: string | ConnectionInfo = ethereum.rpcUrl;
-  let polyognZkEVMConn: string | ConnectionInfo = polygonZkEVM.rpcUrl;
-  if(ethereum.rpcUrl.includes('@')) {
-    const { password, url, user } = getBreakdownUrl(ethereum.rpcUrl);
-    ethereumConn = {
-      password,
-      url,
-      user
-    };
-  }
-  if(polygonZkEVM.rpcUrl.includes('@')) {
-    const { password, url, user } = getBreakdownUrl(polygonZkEVM.rpcUrl);
-    polyognZkEVMConn = {
-      password,
-      url,
-      user
-    };
-  }
+  const ethereumConn: string | ConnectionInfo = ethereum.rpcUrl.includes("@")
+    ? ethereum.rpcUrl
+    : getBreakdownUrl(ethereum.rpcUrl);
+  const polyognZkEVMConn: string | ConnectionInfo = polygonZkEVM.rpcUrl.includes("@")
+    ? polygonZkEVM.rpcUrl
+    : getBreakdownUrl(polygonZkEVM.rpcUrl);
+
   const ethereumProvider = new StaticJsonRpcProvider(ethereumConn);
   const polygonZkEVMProvider = new StaticJsonRpcProvider(polyognZkEVMConn);
-  console.log('ethereumProvider -', JSON.stringify(ethereumProvider));
-  console.log('polygonZkEVMProvider -', JSON.stringify(polygonZkEVMProvider));
   const poeContract = ProofOfEfficiency__factory.connect(
     ethereum.poeContractAddress,
     ethereumProvider

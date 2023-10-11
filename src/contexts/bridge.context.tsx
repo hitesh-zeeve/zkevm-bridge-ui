@@ -287,7 +287,6 @@ const BridgeProvider: FC<PropsWithChildren> = (props) => {
       total: number;
     }> => {
       const apiUrl = env.bridgeApiUrl;
-      console.log('bridgeApiUrl -', env.bridgeApiUrl);
       const { deposits: apiDeposits, total } = await getDeposits({
         abortSignal,
         apiUrl,

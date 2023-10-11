@@ -145,6 +145,7 @@ const BridgeProvider: FC<PropsWithChildren> = (props) => {
   const fetchBridge = useCallback(
     async ({ abortSignal, depositCount, env, networkId }: FetchBridgeParams): Promise<Bridge> => {
       const apiUrl = env.bridgeApiUrl;
+      console.log('getDeposit: bridgeApiUrl -', env.bridgeApiUrl);
       const apiDeposit = await getDeposit({
         abortSignal,
         apiUrl,
@@ -286,6 +287,7 @@ const BridgeProvider: FC<PropsWithChildren> = (props) => {
       total: number;
     }> => {
       const apiUrl = env.bridgeApiUrl;
+      console.log('bridgeApiUrl -', env.bridgeApiUrl);
       const { deposits: apiDeposits, total } = await getDeposits({
         abortSignal,
         apiUrl,

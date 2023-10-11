@@ -29,6 +29,7 @@ export const Login: FC = () => {
 
   const onConnectProvider = () => {
     setPolicyCheck();
+    console.log('selectedWallet -', selectedWallet);
     selectedWallet && connectProvider(selectedWallet);
     setShowPolicyModal(false);
   };

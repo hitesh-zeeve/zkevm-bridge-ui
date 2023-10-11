@@ -94,6 +94,8 @@ export const getChains = ({
     rpcUrl: string;
   };
 }): Promise<[EthereumChain, ZkEVMChain]> => {
+  console.log('ethereum.rpcUrl -', ethereum.rpcUrl);
+  console.log('polygonZkEVM.rpcUrl -', polygonZkEVM.rpcUrl);
   const ethereumProvider = new StaticJsonRpcProvider(ethereum.rpcUrl);
   const polygonZkEVMProvider = new StaticJsonRpcProvider(polygonZkEVM.rpcUrl);
   const poeContract = ProofOfEfficiency__factory.connect(

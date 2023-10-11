@@ -141,7 +141,9 @@ export const getChains = ({
       networkId: polygonZkEVM.networkId,
       provider: polygonZkEVMProvider,
     },
-  ]);
+  ]).catch((e => {
+    console.error('ERRROR', e);
+  }));
 };
 
 export const getEtherToken = (chain: Chain): Token => {

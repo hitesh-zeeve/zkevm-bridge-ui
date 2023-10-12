@@ -97,11 +97,11 @@ export const getChains = ({
   };
 }): Promise<[EthereumChain, ZkEVMChain]> => {
   const ethereumConn: string | ConnectionInfo = ethereum.rpcUrl.includes("@")
-    ? ethereum.rpcUrl
-    : getBreakdownUrl(ethereum.rpcUrl);
+    ? getBreakdownUrl(ethereum.rpcUrl)
+    : ethereum.rpcUrl;
   const polyognZkEVMConn: string | ConnectionInfo = polygonZkEVM.rpcUrl.includes("@")
-    ? polygonZkEVM.rpcUrl
-    : getBreakdownUrl(polygonZkEVM.rpcUrl);
+    ? getBreakdownUrl(polygonZkEVM.rpcUrl)
+    : polygonZkEVM.rpcUrl;
 
   const ethereumProvider = new StaticJsonRpcProvider(ethereumConn);
   const polygonZkEVMProvider = new StaticJsonRpcProvider(polyognZkEVMConn);
